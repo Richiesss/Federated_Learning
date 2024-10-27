@@ -31,26 +31,7 @@ class BaseStrategy(fl.server.strategy.FedAvg):
         self.csv_file_path = f"{strategy_name}_metrics.csv"
         self._initialize_csv()
 
-    # def _initialize_csv(self):
-    #     """CSVファイルを初期化する"""
-    #     if os.path.exists(self.csv_file_path):
-    #         os.remove(self.csv_file_path)
-    #     with open(self.csv_file_path, mode="w", newline="") as file:
-    #         writer = csv.writer(file)
-    #         writer.writerow(["Round", "Dice Score", "Precision", "Recall", "Accuracy"])
 
-    # def _write_metric_to_csv(
-    #     self,
-    #     round_num: int,
-    #     dice_score: float,
-    #     precision: float,
-    #     recall: float,
-    #     accuracy: float,
-    # ):
-    #     """メトリックをCSVファイルに書き込む"""
-    #     with open(self.csv_file_path, mode="a", newline="") as file:
-    #         writer = csv.writer(file)
-    #         writer.writerow([round_num, dice_score, precision, recall, accuracy])
 
     def initialize_parameters(
         self, client_manager: ClientManager
@@ -109,46 +90,6 @@ class BaseStrategy(fl.server.strategy.FedAvg):
         plt.savefig(f"round_{server_round}_client_data_distribution.png")
         plt.close()
 
-    # def aggregate_evaluate(
-    #     self,
-    #     server_round: int,
-    #     results: List[Tuple[ClientProxy, fl.common.EvaluateRes]],
-    #     failures: List[BaseException],
-    # ) -> Tuple[Optional[float], Dict[str, Scalar]]:
-    #     """評価結果を集約し、平均Diceスコア、Precision、Recall、Accuracyを計算する"""
-    #     if not results:
-    #         return None, {}
-
-    #     total_examples = sum([res.num_examples for _, res in results])
-    #     total_dice = sum(
-    #         [res.metrics["dice_score"] * res.num_examples for _, res in results]
-    #     )
-    #     total_precision = sum(
-    #         [res.metrics["precision"] * res.num_examples for _, res in results]
-    #     )
-    #     total_recall = sum(
-    #         [res.metrics["recall"] * res.num_examples for _, res in results]
-    #     )
-    #     total_accuracy = sum(
-    #         [res.metrics["accuracy"] * res.num_examples for _, res in results]
-    #     )
-
-    #     avg_dice_score = total_dice / total_examples
-    #     avg_precision = total_precision / total_examples
-    #     avg_recall = total_recall / total_examples
-    #     avg_accuracy = total_accuracy / total_examples
-
-    #     print(
-    #         f"Round {server_round} Metrics: Dice Score = {avg_dice_score:.4f}, Precision = {avg_precision:.4f}, Recall = {avg_recall:.4f}, Accuracy = {avg_accuracy:.4f}"
-    #     )
-    #     self._write_metric_to_csv(
-    #         server_round, avg_dice_score, avg_precision, avg_recall, avg_accuracy
-    #     )
-
-    #     return super().aggregate_evaluate(server_round, results, failures)
-    # strategies/base_strategy.py
-
-    # （省略）
 
     def aggregate_evaluate(
         self,
