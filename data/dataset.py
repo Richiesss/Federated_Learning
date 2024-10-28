@@ -58,7 +58,10 @@ def initialize_datasets():
     )
 
     # ベースディレクトリ
-    base_dir = r"D:/workspace/scripts/Thesis_Research/FL/kvasir-seg/output1/"
+    # ルートディレクトリの取得
+    root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    base_dir = os.path.join(root_dir, "kvasir-seg/output1/")
+
 
     # ラベルディレクトリ
     labels = ["label_0", "label_1", "label_2", "label_3", "label_4"]
