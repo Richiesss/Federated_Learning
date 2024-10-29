@@ -29,12 +29,18 @@ def update_plot():
     while True:
         try:
             # Check if both CSV files exist
-            if os.path.exists("D:/workspace/FA_metrics.csv") and os.path.exists(
-                "D:/workspace/SOFA_metrics.csv"
+            if os.path.exists(
+                "D:\workspace\scripts\Thesis_Research\FL\FL-sys\SOFA_metrics.csv"
+            ) and os.path.exists(
+                "D:\workspace\scripts\Thesis_Research\FL\FL-sys\SOFA_metrics.csv"
             ):
                 # Reload the CSV files
-                df1_iid = pd.read_csv("D:/workspace/FA_metrics.csv")
-                df2_sofa_iid = pd.read_csv("D:/workspace/SOFA_metrics.csv")
+                df1_iid = pd.read_csv(
+                    "D:\workspace\scripts\Thesis_Research\FL\FL-sys\SOFA_metrics.csv"
+                )
+                df2_sofa_iid = pd.read_csv(
+                    "D:\workspace\scripts\Thesis_Research\FL\FL-sys\SOFA_metrics.csv"
+                )
 
                 # Apply the smoothing function to the 'Accuracy' column
                 df1_iid["IoU"] = smooth_curve(df1_iid["IoU"], factor=0.8)
@@ -62,7 +68,7 @@ def update_plot():
             print(f"An error occurred: {e}")
 
         # Pause to update the plot every 5 seconds
-        plt.pause(60)
+        plt.pause(5)
 
 
 # Call the update_plot function to start real-time plotting

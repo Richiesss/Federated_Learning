@@ -47,7 +47,7 @@ def get_client_fn(iid: bool):
                 """モデルを学習する"""
                 self.set_parameters(parameters)
                 model.train()
-                optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+                optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
                 criterion = torch.nn.BCEWithLogitsLoss()
                 for epoch in range(1):  # 必要に応じてエポック数を増やす
                     for batch in trainloader:
