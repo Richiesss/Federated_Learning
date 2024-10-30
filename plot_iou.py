@@ -30,13 +30,13 @@ def update_plot():
         try:
             # Check if both CSV files exist
             if os.path.exists(
-                "D:\workspace\scripts\Thesis_Research\FL\FL-sys\SOFA_metrics.csv"
+                "D:\workspace\scripts\Thesis_Research\FL\FL-sys\FA_metrics.csv"
             ) and os.path.exists(
                 "D:\workspace\scripts\Thesis_Research\FL\FL-sys\SOFA_metrics.csv"
             ):
                 # Reload the CSV files
                 df1_iid = pd.read_csv(
-                    "D:\workspace\scripts\Thesis_Research\FL\FL-sys\SOFA_metrics.csv"
+                    "D:\workspace\scripts\Thesis_Research\FL\FL-sys\FA_metrics.csv"
                 )
                 df2_sofa_iid = pd.read_csv(
                     "D:\workspace\scripts\Thesis_Research\FL\FL-sys\SOFA_metrics.csv"
