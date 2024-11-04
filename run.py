@@ -61,7 +61,7 @@ def main():
         num_clients=num_clients,
         client_resources=client_resources,
         strategy=strategy,
-        config=fl.server.ServerConfig(num_rounds=450),
+        config=fl.server.ServerConfig(num_rounds=225),
         ray_init_args={"include_dashboard": False},
     )
     end_time = time.perf_counter()

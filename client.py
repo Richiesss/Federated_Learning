@@ -19,9 +19,9 @@ def create_model() -> UNet:
 def create_data_loaders(client_id: int, iid: bool):
     """データローダーを作成する"""
     trainset, testset = load_data(client_id, iid)
-    trainloader = DataLoader(trainset, batch_size=4, shuffle=True, num_workers=os.cpu_count(), pin_memory=True)
+    trainloader = DataLoader(trainset, batch_size=32, shuffle=True, num_workers=os.cpu_count(), pin_memory=True)
     # テストデータローダーでシャッフルを有効にする
-    testloader = DataLoader(testset, batch_size=4, shuffle=True, num_workers=os.cpu_count(), pin_memory=True)
+    testloader = DataLoader(testset, batch_size=32, shuffle=True, num_workers=os.cpu_count(), pin_memory=True)
     return trainloader, testloader
 
 
@@ -48,12 +48,14 @@ def get_client_fn(iid: bool):
                 """モデルを学習する"""
                 self.set_parameters(parameters)
                 model.train()
-                optimizer = torch.optim.Adam(model.parameters(), lr=0.005)
+                optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
                 criterion = torch.nn.BCEWithLogitsLoss()
-                for epoch in range(1):  # 必要に応じてエポック数を増やす
+
+                for epoch in range(5):  # 必要に応じてエポック数を増やす
                     for batch in trainloader:
                         if len(batch) >= 2:
                             images, masks = batch[0].to(device), batch[1].to(device)
+                            # print(f"epoch: {epoch}, batch size: {images.size()}")
                         else:
                             print(f"Unexpected batch size: {len(batch)}")
                             continue
